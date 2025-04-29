@@ -1,8 +1,9 @@
+```json
 {
   "version": 2,
   "builds": [
     {
-      "src": "main.go",
+      "src": "api/**/*.go",
       "use": "@vercel/go"
     },
     {
@@ -12,12 +13,16 @@
   ],
   "routes": [
     {
-      "src": "/api/(.*)",
-      "dest": "main.go"
+      "src": "/api/posts/(.*)",
+      "dest": "/api/post/slug.go"
+    },
+    {
+      "src": "/api/posts",
+      "dest": "/api/posts.go"
     },
     {
       "src": "/(.*)",
-      "dest": "public/$1"
+      "dest": "/public/$1"
     }
   ]
 }
