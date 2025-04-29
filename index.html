@@ -1,12 +1,132 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Computer Science Study</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Computer Science Study</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        .hero-bg {
+            background: linear-gradient(to right, #1e3a8a, #3b82f6);
+        }
+    </style>
 </head>
-<body>
-  <h1>Welcome to Computer Science Study</h1>
-  <p>This is a simple website hosted on Vercel.</p>
+<body class="bg-gray-100">
+    <!-- Navigation Bar -->
+    <nav class="bg-white shadow-md sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16">
+                <div class="flex items-center">
+                    <a href="/" class="text-2xl font-bold text-blue-600">CS Study</a>
+                </div>
+                <div class="flex items-center space-x-4">
+                    <a href="/" class="text-gray-700 hover:text-blue-600 px-3 py-2 rounded-md text-sm font-medium">Home</a>
+                    <a href="/blog" class="text-gray-700 hover:text-blue-600 px-3 py-2 rounded-md text-sm font-medium">Blog</a>
+                    <a href="#about" class="text-gray-700 hover:text-blue-600 px-3 py-2 rounded-md text-sm font-medium">About</a>
+                    <a href="#contact" class="text-gray-700 hover:text-blue-600 px-3 py-2 rounded-md text-sm font-medium">Contact</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero-bg text-white py-20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h1 class="text-4xl md:text-5xl font-bold mb-4">Welcome to Computer Science Study</h1>
+            <p class="text-lg md:text-xl mb-6">Your go-to resource for learning and exploring computer science concepts, from algorithms to AI.</p>
+            <a href="/blog" class="inline-block bg-white text-blue-600 font-semibold px-6 py-3 rounded-md hover:bg-gray-200 transition">Explore Our Blog</a>
+        </div>
+    </section>
+
+    <!-- Blog Preview Section -->
+    <section class="py-16 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="text-3xl font-bold text-gray-800 mb-8 text-center">Latest Blog Posts</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Blog Post Card 1 -->
+                <div class="bg-gray-50 rounded-lg shadow-md overflow-hidden hover:shadow-lg transition">
+                    <img src="https://via.placeholder.com/400x200" alt="Blog post image" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold text-gray-800 mb-2">Understanding Algorithms</h3>
+                        <p class="text-gray-600 mb-4">Dive into the world of algorithms and learn how they power modern computing.</p>
+                        <a href="/blog/understanding-algorithms" class="text-blue-600 font-medium hover:underline">Read More</a>
+                    </div>
+                </div>
+                <!-- Blog Post Card 2 -->
+                <div class="bg-gray-50 rounded-lg shadow-md overflow-hidden hover:shadow-lg transition">
+                    <img src="https://via.placeholder.com/400x200" alt="Blog post image" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold text-gray-800 mb-2">Introduction to Machine Learning</h3>
+                        <p class="text-gray-600 mb-4">Explore the basics of machine learning and its applications in real-world scenarios.</p>
+                        <a href="/blog/intro-to-ml" class="text-blue-600 font-medium hover:underline">Read More</a>
+                    </div>
+                </div>
+                <!-- Blog Post Card 3 -->
+                <div class="bg-gray-50 rounded-lg shadow-md overflow-hidden hover:shadow-lg transition">
+                    <img src="https://via.placeholder.com/400x200" alt="Blog post image" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold text-gray-800 mb-2">Data Structures 101</h3>
+                        <p class="text-gray-600 mb-4">Learn the fundamental data structures every programmer should know.</p>
+                        <a href="/blog/data-structures-101" class="text-blue-600 font-medium hover:underline">Read More</a>
+                    </div>
+                </div>
+            </div>
+            <div class="text-center mt-8">
+                <a href="/blog" class="inline-block bg-blue-600 text-white font-semibold px-6 py-3 rounded-md hover:bg-blue-700 transition">View All Posts</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-16 bg-gray-100">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h2 class="text-3xl font-bold text-gray-800 mb-4">About Us</h2>
+            <p class="text-lg text-gray-600 max-w-3xl mx-auto">Computer Science Study is dedicated to providing high-quality, accessible resources for students, professionals, and enthusiasts of computer science. Our blog covers a wide range of topics, from beginner guides to advanced concepts.</p>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-16 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h2 class="text-3xl font-bold text-gray-800 mb-4">Get in Touch</h2>
+            <p class="text-lg text-gray-600 mb-6">Have questions or suggestions? Reach out to us!</p>
+            <div class="max-w-md mx-auto">
+                <div class="mb-4">
+                    <input type="text" placeholder="Your Name" class="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-600">
+                </div>
+                <div class="mb-4">
+                    <input type="email" placeholder="Your Email" class="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-600">
+                </div>
+                <div class="mb-4">
+                    <textarea placeholder="Your Message" rows="4" class="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-600"></textarea>
+                </div>
+                <button class="bg-blue-600 text-white font-semibold px-6 py-3 rounded-md hover:bg-blue-700 transition">Send Message</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white py-8">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <p class="text-sm">&copy; 2025 Computer Science Study. All rights reserved.</p>
+            <div class="mt-4 space-x-4">
+                <a href="#" class="text-gray-400 hover:text-white">Privacy Policy</a>
+                <a href="#" class="text-gray-400 hover:text-white">Terms of Service</a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Basic form submission handling (client-side placeholder)
+        const contactForm = document.querySelector('#contact button');
+        contactForm.addEventListener('click', (e) => {
+            e.preventDefault();
+            alert('Thank you for your message! This is a demo form and does not send data.');
+        });
+    </script>
 </body>
 </html>
