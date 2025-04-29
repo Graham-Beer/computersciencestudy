@@ -9,6 +9,15 @@ import (
 	_ "github.com/lib/pq"
 )
 
+type Post struct {
+	ID        int    `json:"id"`
+	Title     string `json:"title"`
+	Content   string `json:"content"`
+	Author    string `json:"author"`
+	CreatedAt string `json:"created_at"`
+	Slug      string `json:"slug"`
+}
+
 func Handler(w http.ResponseWriter, r *http.Request) {
 	// Get slug from URL path
 	slug := r.URL.Path[len("/api/posts/"):]
