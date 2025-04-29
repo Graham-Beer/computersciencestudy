@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Computer Science Study</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+        .hero-bg { background: linear-gradient(to right, #1e3a8a, #3b82f6); }
+    </style>
+</head>
+<body class="bg-gray-100">
+    <!-- Navigation Bar -->
+    <nav class="bg-white shadow-md sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="flex justify-between h-16">
+                <div className="flex items-center">
+                    <a href="/" className="text-2xl font-bold text-blue-600">CS Study</a>
+                </div>
+                <div className="flex items-center space-x-4">
+                    <a href="/" className="text-gray-700 hover:text-blue-600 px-3 py-2 rounded-md text-sm font-medium">Home</a>
+                    <a href="/blog.html" className="text-gray-700 hover:text-blue-600 px-3 py-2 rounded-md text-sm font-medium">Blog</a>
+                    <a href="#about" className="text-gray-700 hover:text-blue-600 px-3 py-2 rounded-md text-sm font-medium">About</a>
+                    <a href="#contact" className="text-gray-700 hover:text-blue-600 px-3 py-2 rounded-md text-sm font-medium">Contact</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero-bg text-white py-20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h1 class="text-4xl md:text-5xl font-bold mb-4">Welcome to Computer Science Study</h1>
+            <p class="text-lg md:text-xl mb-6">Your go-to resource for learning and exploring computer science concepts.</p>
+            <a href="/blog.html" class="inline-block bg-white text-blue-600 font-semibold px-6 py-3 rounded-md hover:bg-gray-200">Explore Our Blog</a>
+        </div>
+    </section>
+
+    <!-- Blog Preview Section -->
+    <section class="py-16 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="text-3xl font-bold text-gray-800 mb-8 text-center">Latest Blog Posts</h2>
+            <div id="posts" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"></div>
+            <div class="text-center mt-8">
+                <a href="/blog.html" class="inline-block bg-blue-600 text-white font-semibold px-6 py-3 rounded-md hover:bg-blue-700">View All Posts</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- About and Contact Sections -->
+    <section id="about" class="py-16 bg-gray-100">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h2 class="text-3xl font-bold text-gray-800 mb-4">About Us</h2>
+            <p class="text-lg text-gray-600 max-w-3xl mx-auto">Computer Science Study is dedicated to providing high-quality resources for computer science enthusiasts.</p>
+        </div>
+    </section>
+
+    <section id="contact" class="py-16 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h2 class="text-3xl font-bold text-gray-800 mb-4">Get in Touch</h2>
+            <p class="text-lg text-gray-600 mb-6">Have questions? Reach out!</p>
+            <form class="max-w-md mx-auto">
+                <input type="text" placeholder="Your Name" class="w-full px-4 py-2 mb-4 border rounded-md" />
+                <input type="email" placeholder="Your Email" class="w-full px-4 py-2 mb-4 border rounded-md" />
+                <textarea placeholder="Your Message" rows="4" class="w-full px-4 py-2 mb-4 border rounded-md"></textarea>
+                <button type="submit" class="bg-blue-600 text-white font-semibold px-6 py-3 rounded-md hover:bg-blue-700">Send</button>
+            </form>
+        </div>
+    </section>
+
+    <footer class="bg-gray-800 text-white py-8 text-center">
+        <p class="text-sm">© 2025 Computer Science Study. All rights reserved.</p>
+    </footer>
+
+    <script>
+        // Fetch latest posts
+        fetch('/api/posts')
+            .then(response => response.json())
+            .then(posts => {
+                const postsContainer = document.getElementById('posts');
+                posts.forEach(post => {
+                    const postElement = document.createElement('div');
+                    postElement.className = 'bg-gray-50 rounded-lg shadow-md overflow-hidden hover:shadow-lg transition';
+                    postElement.innerHTML = `
+                        <img src="https://via.placeholder.com/400x200" alt="${post.title}" class="w-full h-48 object-cover">
+                        <div class="p-6">
+                            <h3 class="text-xl font-semibold text-gray-800 mb-2">${post.title}</h3>
+                            <p class="text-gray-600 mb-4">${post.content.substring(0, 100)}...</p>
+                            <a href="/post.html?slug=${post.slug}" class="text-blue-600 font-medium hover:underline">Read More</a>
+                        </div>
+                    `;
+                    postsContainer.appendChild(postElement);
+                });
+            })
+            .catch(error => console.error('Error fetching posts:', error));
+    </script>
+</body>
+</html>
