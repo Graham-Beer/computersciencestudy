@@ -1,63 +1,104 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Blog - Computer Science Study</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
-    <style>
-        body { font-family: 'Inter', sans-serif; }
-    </style>
-</head>
-<body class="bg-gray-100">
-    <nav class="bg-white shadow-md sticky top-0 z-50">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="flex justify-between h-16">
-                <div className="flex items-center">
-                    <a href="/" className="text-2xl font-bold text-blue-600">CS Study</a>
-                </div>
-                <div className="flex items-center space-x-4">
-                    <a href="/" className="text-gray-700 hover:text-blue-600 px-3 py-2 rounded-md text-sm font-medium">Home</a>
-                    <a href="/blog.html" className="text-gray-700 hover:text-blue-600 px-3 py-2 rounded-md text-sm font-medium">Blog</a>
-                    <a href="/#about" className="text-gray-700 hover:text-blue-600 px-3 py-2 rounded-md text-sm font-medium">About</a>
-                    <a href="/#contact" className="text-gray-700 hover:text-blue-600 px-3 py-2 rounded-md text-sm font-medium">Contact</a>
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Blog - Computer Science Study</title>
+        <script src="https://cdn.tailwindcss.com"></script>
+        <link
+            href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap"
+            rel="stylesheet"
+        />
+        <style>
+            body {
+                font-family: "Inter", sans-serif;
+            }
+        </style>
+    </head>
+    <body class="bg-gray-100">
+        <nav class="bg-white shadow-md sticky top-0 z-50">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="flex justify-between h-16">
+                    <div class="flex items-center">
+                        <a
+                            href="https://www.computersciencestudy.com/"
+                            class="text-2xl font-bold text-blue-600"
+                            >CS Study</a
+                        >
+                    </div>
+                    <div class="flex items-center space-x-4">
+                        <a
+                            href="https://www.computersciencestudy.com/"
+                            class="text-gray-700 hover:text-blue-600 px-3 py-2 rounded-md text-sm font-medium"
+                            >Home</a
+                        >
+                        <a
+                            href="https://www.computersciencestudy.com/blog.html"
+                            class="text-gray-700 hover:text-blue-600 px-3 py-2 rounded-md text-sm font-medium"
+                            >Blog</a
+                        >
+                        <a
+                            href="https://www.computersciencestudy.com/#about"
+                            class="text-gray-700 hover:text-blue-600 px-3 py-2 rounded-md text-sm font-medium"
+                            >About</a
+                        >
+                        <a
+                            href="https://www.computersciencestudy.com/#contact"
+                            class="text-gray-700 hover:text-blue-600 px-3 py-2 rounded-md text-sm font-medium"
+                            >Contact</a
+                        >
+                    </div>
                 </div>
             </div>
-        </div>
-    </nav>
+        </nav>
 
-    <section class="py-16 bg-white">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <h1 class="text-3xl font-bold text-gray-800 mb-8 text-center">All Blog Posts</h1>
-            <div id="posts" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"></div>
-        </div>
-    </section>
+        <section class="py-16 bg-white">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <h1 class="text-3xl font-bold text-gray-800 mb-8 text-center">
+                    All Blog Posts
+                </h1>
+                <div
+                    id="posts"
+                    class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
+                ></div>
+            </div>
+        </section>
 
-    <footer class="bg-gray-800 text-white py-8 text-center">
-        <p className="text-sm">© 2025 Computer Science Study. All rights reserved.</p>
-    </footer>
+        <footer class="bg-gray-800 text-white py-8 text-center">
+            <p class="text-sm">
+                © 2025 Computer Science Study. All rights reserved.
+            </p>
+        </footer>
 
-    <script>
-        fetch('/api/posts')
-            .then(response => response.json())
-            .then(posts => {
-                const postsContainer = document.getElementById('posts');
-                posts.forEach(post => {
-                    const postElement = document.createElement('div');
-                    postElement.className = 'bg-gray-50 rounded-lg shadow-md overflow-hidden hover:shadow-lg transition';
-                    postElement.innerHTML = `
+        <script>
+            fetch("https://www.computersciencestudy.com/api/posts")
+                .then((response) => {
+                    if (!response.ok) throw new Error("Failed to fetch posts");
+                    return response.json();
+                })
+                .then((posts) => {
+                    const postsContainer = document.getElementById("posts");
+                    postsContainer.innerHTML = ""; // Clear container
+                    posts.forEach((post) => {
+                        const postElement = document.createElement("div");
+                        postElement.className =
+                            "bg-gray-50 rounded-lg shadow-md overflow-hidden hover:shadow-lg transition";
+                        postElement.innerHTML = `
                         <img src="https://via.placeholder.com/400x200" alt="${post.title}" class="w-full h-48 object-cover">
                         <div class="p-6">
                             <h3 class="text-xl font-semibold text-gray-800 mb-2">${post.title}</h3>
                             <p class="text-gray-600 mb-4">${post.content.substring(0, 100)}...</p>
-                            <a href="/post.html?slug=${post.slug}" class="text-blue-600 font-medium hover:underline">Read More</a>
+                            <a href="https://www.computersciencestudy.com/post.html?slug=${post.slug}" class="text-blue-600 font-medium hover:underline">Read More</a>
                         </div>
                     `;
-                    postsContainer.appendChild(postElement);
+                        postsContainer.appendChild(postElement);
+                    });
+                })
+                .catch((error) => {
+                    console.error("Error fetching posts:", error);
+                    document.getElementById("posts").textContent =
+                        "Failed to load posts.";
                 });
-            })
-            .catch(error => console.error('Error fetching posts:', error));
-    </script>
-</body>
+        </script>
+    </body>
 </html>
