@@ -13,7 +13,7 @@
   "routes": [
     {
       "src": "/api/posts/(.*)",
-      "dest": "/api/posts/slug.go"
+      "dest": "/api/post/[slug].go"
     },
     {
       "src": "/api/posts",
@@ -23,5 +23,6 @@
       "src": "/(.*)",
       "dest": "/public/$1"
     }
-  ]
+  ],
+  "redirects": []
 }
