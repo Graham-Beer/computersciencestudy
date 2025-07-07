@@ -1,4 +1,4 @@
-package handler
+package api
 
 import (
 	"database/sql"
@@ -9,17 +9,7 @@ import (
 	_ "github.com/lib/pq"
 )
 
-type Post struct {
-	ID        int    `json:"id"`
-	Title     string `json:"title"`
-	Content   string `json:"content"`
-	Author    string `json:"author"`
-	CreatedAt string `json:"created_at"`
-	Slug      string `json:"slug"`
-	ImageUrl  string `json:"image_url"`
-}
-
-func Handler(w http.ResponseWriter, r *http.Request) {
+func SlugHandler(w http.ResponseWriter, r *http.Request) {
 	// Extract slug from /api/posts/:slug
 	slug := r.URL.Path[len("/api/posts/"):]
 

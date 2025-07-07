@@ -9,17 +9,7 @@ import (
 	_ "github.com/lib/pq"
 )
 
-type Post struct {
-	ID        int    `json:"id"`
-	Title     string `json:"title"`
-	Content   string `json:"content"`
-	Author    string `json:"author"`
-	CreatedAt string `json:"created_at"`
-	Slug      string `json:"slug"`
-	ImageUrl  string `json:"image_url"` // New field
-}
-
-func Handler(w http.ResponseWriter, r *http.Request) {
+func PostsHandler(w http.ResponseWriter, r *http.Request) {
 	connStr := os.Getenv("POSTGRES_URL")
 	db, err := sql.Open("postgres", connStr)
 	if err != nil {
@@ -46,7 +36,7 @@ func Handler(w http.ResponseWriter, r *http.Request) {
 		posts = append(posts, p)
 	}
 
-	w.Header().Set("Access-Control-Allow-Origin", "*") // Add CORS for frontend fetch
+	w.Header().Set("Access-Control-Allow-Origin", "*")
 	w.Header().Set("Content-Type", "application/json")
 	json.NewEncoder(w).Encode(posts)
 }
