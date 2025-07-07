@@ -1,6 +1,7 @@
 package api
 
 import (
+	"computersciencestudy/internal"
 	"database/sql"
 	"encoding/json"
 	"net/http"
@@ -21,7 +22,7 @@ func SlugHandler(w http.ResponseWriter, r *http.Request) {
 	}
 	defer db.Close()
 
-	var p Post
+	var p internal.Post
 	err = db.QueryRow("SELECT id, title, content, author, created_at, slug, image_url FROM posts WHERE slug = $1", slug).
 		Scan(&p.ID, &p.Title, &p.Content, &p.Author, &p.CreatedAt, &p.Slug, &p.ImageUrl)
 	if err == sql.ErrNoRows {

@@ -1,6 +1,7 @@
 package api
 
 import (
+	"computersciencestudy/internal"
 	"database/sql"
 	"encoding/json"
 	"net/http"
@@ -25,9 +26,9 @@ func PostsHandler(w http.ResponseWriter, r *http.Request) {
 	}
 	defer rows.Close()
 
-	var posts []Post
+	var posts []internal.Post
 	for rows.Next() {
-		var p Post
+		var p internal.Post
 		err := rows.Scan(&p.ID, &p.Title, &p.Content, &p.Author, &p.CreatedAt, &p.Slug, &p.ImageUrl)
 		if err != nil {
 			http.Error(w, "Failed to scan post", http.StatusInternalServerError)
