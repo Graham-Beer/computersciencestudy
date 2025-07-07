@@ -1,4 +1,4 @@
-package api
+package handler
 
 import (
 	"database/sql"
@@ -16,13 +16,12 @@ type Post struct {
 	Author    string `json:"author"`
 	CreatedAt string `json:"created_at"`
 	Slug      string `json:"slug"`
+	ImageUrl  string `json:"image_url"` // Extended field
 }
 
 func Handler(w http.ResponseWriter, r *http.Request) {
-	// Get slug from URL path
-	slug := r.URL.Path[len("/api/posts/"):]
+	slug := r.URL.Path[len("/api/post/"):]
 
-	// Connect to Neon database
 	connStr := os.Getenv("POSTGRES_URL")
 	db, err := sql.Open("postgres", connStr)
 	if err != nil {
@@ -31,10 +30,9 @@ func Handler(w http.ResponseWriter, r *http.Request) {
 	}
 	defer db.Close()
 
-	// Fetch post by slug
 	var p Post
-	err = db.QueryRow("SELECT id, title, content, author, created_at, slug FROM posts WHERE slug = $1", slug).
-		Scan(&p.ID, &p.Title, &p.Content, &p.Author, &p.CreatedAt, &p.Slug)
+	err = db.QueryRow("SELECT id, title, content, author, created_at, slug, image_url FROM posts WHERE slug = $1", slug).
+		Scan(&p.ID, &p.Title, &p.Content, &p.Author, &p.CreatedAt, &p.Slug, &p.ImageUrl)
 	if err == sql.ErrNoRows {
 		http.Error(w, "Post not found", http.StatusNotFound)
 		return
@@ -43,7 +41,7 @@ func Handler(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	// Return JSON response
+	w.Header().Set("Access-Control-Allow-Origin", "*") // Add CORS for frontend fetch
 	w.Header().Set("Content-Type", "application/json")
 	json.NewEncoder(w).Encode(p)
 }
