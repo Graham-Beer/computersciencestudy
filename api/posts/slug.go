@@ -16,11 +16,11 @@ type Post struct {
 	Author    string `json:"author"`
 	CreatedAt string `json:"created_at"`
 	Slug      string `json:"slug"`
-	ImageUrl  string `json:"image_url"` // Extended field
+	ImageUrl  string `json:"image_url"` // New field
 }
 
 func Handler(w http.ResponseWriter, r *http.Request) {
-	slug := r.URL.Path[len("/api/post/"):]
+	slug := r.URL.Path[len("/api/posts/"):]
 
 	connStr := os.Getenv("POSTGRES_URL")
 	db, err := sql.Open("postgres", connStr)
