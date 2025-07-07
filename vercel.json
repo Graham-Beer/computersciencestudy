@@ -10,18 +10,18 @@
       "use": "@vercel/static"
     }
   ],
-  "routes": [
+  "rewrites": [
     {
-      "src": "/api/posts/(.*)",
-      "dest": "/api/post/slug.go"
+      "source": "/api/posts/(.*)",
+      "destination": "/api/post/slug.go"
     },
     {
-      "src": "/api/posts",
-      "dest": "/api/posts.go"
+      "source": "/api/posts",
+      "destination": "/api/posts.go"
     },
     {
-      "src": "/(.*)",
-      "dest": "/public/$1"
+      "source": "/(.*)",
+      "destination": "/public/$1"
     }
   ]
 }

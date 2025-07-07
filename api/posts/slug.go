@@ -16,10 +16,11 @@ type Post struct {
 	Author    string `json:"author"`
 	CreatedAt string `json:"created_at"`
 	Slug      string `json:"slug"`
-	ImageUrl  string `json:"image_url"` // New field
+	ImageUrl  string `json:"image_url"`
 }
 
 func Handler(w http.ResponseWriter, r *http.Request) {
+	// Extract slug from /api/posts/:slug
 	slug := r.URL.Path[len("/api/posts/"):]
 
 	connStr := os.Getenv("POSTGRES_URL")
@@ -41,7 +42,7 @@ func Handler(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	w.Header().Set("Access-Control-Allow-Origin", "*") // Add CORS for frontend fetch
+	w.Header().Set("Access-Control-Allow-Origin", "*")
 	w.Header().Set("Content-Type", "application/json")
 	json.NewEncoder(w).Encode(p)
 }
